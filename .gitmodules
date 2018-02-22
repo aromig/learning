@@ -1,0 +1,12 @@
+[submodule "js-minicamp/js-minicamp-homework-1"]
+	path = js-minicamp/js-minicamp-homework-1
+	url = https://github.com/aromig/js-minicamp-homework-1.git
+[submodule "js-minicamp/js-minicamp-homework-2"]
+	path = js-minicamp/js-minicamp-homework-2
+	url = https://github.com/aromig/js-minicamp-homework-2.git
+[submodule "js-minicamp/js-minicamp-homework-3"]
+	path = js-minicamp/js-minicamp-homework-3
+	url = https://github.com/aromig/js-minicamp-homework-3.git
+[submodule "js-minicamp/js-minicamp-homework-4"]
+	path = js-minicamp/js-minicamp-homework-4
+	url = https://github.com/aromig/js-minicamp-homework-4.git
