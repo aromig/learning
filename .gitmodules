@@ -10,3 +10,6 @@
 [submodule "js-minicamp/js-minicamp-homework-4"]
 	path = js-minicamp/js-minicamp-homework-4
 	url = https://github.com/aromig/js-minicamp-homework-4.git
+[submodule "nodeschool-answers"]
+	path = nodeschool-answers
+	url = https://github.com/aromig/nodeschool-answers.git
