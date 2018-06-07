@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Promises</title>
+</head>
+
+<body>
+
+  <script>
+    /* fetch('https://api.github.com/users/wesbos')
+      .then(data => data.json)
+      .then(data => {
+        console.log(data);
+      })
+      .catch(err => {
+        console.log(err);
+      }); */
+
+      function wait(ms) {
+        return new Promise((resolve, reject) => {
+          if (ms <= 300) {
+            return reject('That is too fast!');
+          }
+          setTimeout(() => {
+            resolve('He who runs cannot walk with dignity');
+          }, ms)
+        });
+      }
+
+      async function breathe() {
+          console.log('Going to start');
+          await wait(500);
+          console.log('Good, once more!');
+          await wait(100);
+          console.log('Nice, try again?');
+          const quote = await wait(550);
+          console.log('Breathe OUT!');
+          console.log(quote);
+      }
+
+      function handleError(err) {
+        console.log(`I'm the error handler!`);
+        console.log(err);
+      }
+
+      breathe().catch(handleError);
+
+      /* wait(1000).then(quote => {
+        console.log(quote);
+        return wait(5000);
+      }).then(quote => {
+        console.log('Done a second time!');
+        console.log(quote);
+      }) */
+
+      /* const shortWaitPromise = wait(600);
+      const longWaitPromise = wait(2000);
+
+      const waitForEverything = Promise.all([shortWaitPromise, longWaitPromise]);
+
+      waitForEverything.then((allTheThings) => {
+        console.log('All the things are done!');
+      }) */
+
+      /* wait(200).then(quote => {
+        console.log(quote);
+      }).catch(err => {
+        console.log('ohh no!');
+        console.log(err);
+      }); */
+  </script>
+</body>
+
+</html>
