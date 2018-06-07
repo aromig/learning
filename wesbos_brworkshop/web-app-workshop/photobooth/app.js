@@ -1,4 +1,5 @@
-import { populateVideo, drawToCanvas } from "./src/video";
+import { populateVideo, drawToCanvas } from './src/video';
+import { takePhoto, countdown } from './src/photo';
 
 // lets go!
 async function go() {
@@ -16,10 +17,39 @@ async function go() {
   canvasEl.height = videoEl.videoHeight;
   canvasEl.width = videoEl.videoWidth;
 
-  // start to draw the video
-  let interval = setInterval(() => {
+  let interval;
+
+  const draw = () => {
     drawToCanvas(videoEl, canvasEl);
-  }, 16);
+    interval = window.requestAnimationFrame(draw);
+  }
+  interval = window.requestAnimationFrame(draw);
+
+  canvasEl.addEventListener('click', () => {
+    takePhoto(videoEl, canvasEl, strip);
+  });
+
+  countdownButton.addEventListener('click', () => {
+    countdown(videoEl, canvasEl, strip);
+  });
+
+
+
+  filterButtons.forEach(button => {
+    button.addEventListener('click', async function() {
+      cancelAnimationFrame(interval);
+      // lazy load the filters
+      const filters = await import('./src/filters');
+      const draw = () => {
+        drawToCanvas(videoEl, canvasEl, filters[this.dataset.filter]);
+        interval = window.requestAnimationFrame(draw);
+      }
+      interval = window.requestAnimationFrame(draw);    
+    });
+  });
+
+
+  
 }
 
 // call that function on page load
@@ -29,5 +59,20 @@ go();
 if (module.hot) {
   module.hot.dispose(() => {
     window.location.reload();
+  });
+}
+
+// Register Service Worker
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', async () => {
+    const registration = await navigator.serviceWorker.register('./service-worker.js', {
+      scope: '/',
+    });
+    // Registration was successful
+    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    // TODO: listen for updates
+    registration.onupdatefound = () => {
+      alert('Hey, there is an update to this app! Just refresh your browser to see');
+    };
   });
 }
