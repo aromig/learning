@@ -13,3 +13,6 @@
 [submodule "nodeschool-answers"]
 	path = nodeschool-answers
 	url = https://github.com/aromig/nodeschool-answers.git
+[submodule "recursion-prompts"]
+	path = recursion-prompts
+	url = https://github.com/aromig/recursion-prompts
